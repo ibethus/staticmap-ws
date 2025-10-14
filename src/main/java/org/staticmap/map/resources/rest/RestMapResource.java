@@ -1,4 +1,4 @@
-package org.staticmap.map.resources;
+package org.staticmap.map.resources.rest;
 
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
@@ -9,6 +9,7 @@ import jakarta.ws.rs.core.Response;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 import org.staticmap.map.MapApplicationService;
 import org.staticmap.map.gpx.TileProvider;
+import org.staticmap.map.resources.MapUseCases;
 import org.staticmap.model.MapCommand;
 import org.staticmap.model.MapFormData;
 import org.staticmap.model.MapResult;
@@ -19,11 +20,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 @Path("/staticmap")
-public class MapResource implements MapUseCases {
+public class RestMapResource implements MapUseCases {
 
     private final MapApplicationService delegate;
 
-    public MapResource(MapApplicationService delegate) {
+    public RestMapResource(MapApplicationService delegate) {
         this.delegate = delegate;
     }
 

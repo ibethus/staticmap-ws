@@ -11,6 +11,7 @@ import com.hotcoffee.staticmap.layers.components.LineString;
 import io.jenetics.jpx.WayPoint;
 import org.slf4j.LoggerFactory;
 import org.staticmap.map.gpx.GpxStyler;
+import org.staticmap.model.MapCommand;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -52,6 +53,22 @@ public class StaticMapCreator {
         mp.fitBounds(locationBounds, new Padding(styler.paddingY(), 0, styler.paddingX(), 0));
         mp.addLayer(baseMap);
         mp.addLayer(lineString);
+        mp.drawInto(graphics, new CenterOffset(styler.centerOffsetX(), styler.centerOffsetY()));
+        LOGGER.info("Map infos acquired");
+        return mImage;
+    }
+
+    public static BufferedImage createMap(MapCommand command, GpxStyler styler) {
+        BufferedImage mImage = new BufferedImage(command.width(), command.height(), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D graphics = mImage.createGraphics();
+        graphics.setColor(styler.backgroundColor());
+        graphics.fillRect(0, 0, command.width(), command.height());
+        LOGGER.info("Starting to ping tile server...");
+        StaticMap mp = new StaticMap(command.width(), command.height());
+        TMSLayer baseMap = new TMSLayer(styler.tileProvider().getUrl());
+        mp.setLocation(new Location(command.centerLat(), command.centerLon()));
+        mp.setZoom(command.zoom());
+        mp.addLayer(baseMap);
         mp.drawInto(graphics, new CenterOffset(styler.centerOffsetX(), styler.centerOffsetY()));
         LOGGER.info("Map infos acquired");
         return mImage;
