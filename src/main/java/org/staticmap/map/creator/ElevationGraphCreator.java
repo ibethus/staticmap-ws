@@ -1,4 +1,4 @@
-package org.staticmap.map;
+package org.staticmap.map.creator;
 
 import io.jenetics.jpx.Length;
 import io.jenetics.jpx.WayPoint;

@@ -4,7 +4,7 @@ import io.jenetics.jpx.Track;
 import io.jenetics.jpx.WayPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.staticmap.map.StaticMapCreator;
+import org.staticmap.map.creator.StaticMapCreator;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package org.staticmap.map;
+package org.staticmap.map.creator;
 
 import com.hotcoffee.staticmap.CenterOffset;
 import com.hotcoffee.staticmap.StaticMap;
