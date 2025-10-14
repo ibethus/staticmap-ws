@@ -1,0 +1,20 @@
+meta {
+  name: Test with GPX
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/staticmap
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  gpx: @file()
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,87 @@
+openapi: 3.0.3
+info:
+  title: Open Static Map API
+  description: |-
+    An open-source API for generating static map images.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+
+paths:
+  /staticmap:
+    post:
+      summary: Génère une image de carte statique
+      description: |-
+        Crée et retourne une image de carte basée sur des paramètres de formulaire.
+        Supporte la génération via des coordonnées/zoom, des marqueurs, ou un fichier GPX.
+      operationId: generateStaticMap
+      requestBody:
+        description: Paramètres de la carte. Peut inclure un fichier GPX.
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - size
+                - key
+              properties:
+                gpx:
+                  type: string
+                  format: binary
+                  description: "Fichier GPX optionnel contenant le tracé à dessiner sur la carte."
+                center:
+                  type: string
+                  description: "Définit le centre de la carte, sous forme de coordonnées 'latitude,longitude'. Requis si 'gpx' ou 'markers' ne sont pas fournis."
+                  example: "48.8566,2.3522"
+                zoom:
+                  type: integer
+                  minimum: 0
+                  maximum: 22
+                  description: "Définit le niveau de zoom de la carte. Requis si 'gpx' ou 'markers' ne sont pas fournis."
+                  example: 13
+                size:
+                  type: string
+                  pattern: '^\d+x\d+$'
+                  description: "Définit les dimensions en pixels de l'image de la carte (format '{largeur}x{hauteur}')."
+                  example: "600x300"
+                format:
+                  type: string
+                  enum: [png]
+                  default: png
+                  description: "Format de l'image de sortie."
+                markers:
+                  type: array
+                  items:
+                    type: string
+                  description: "Définit un ou plusieurs marqueurs sur la carte."
+                  example: "color:blue|label:S|48.858370,2.294481"
+                path:
+                  type: array
+                  items:
+                    type: string
+                  description: "Définit un ou plusieurs chemins sur la carte."
+                  example: "color:0xff0000ff|weight:5|48.8583,2.2945|48.8606,2.2923"
+                tileProviderUrl:
+                  type: string
+                  description: "Serveur de cartes (tile provider)."
+                  enum: [ARCGIS_ONLINE]
+                  default: ARCGIS_ONLINE
+                key:
+                  type: string
+                  description: "Votre clé API."
+      responses:
+        '200':
+          description: "Image de la carte générée avec succès."
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: "Requête invalide en raison de paramètres manquants ou incorrects, ou d'un fichier GPX invalide."
+        '401':
+          description: "Clé API invalide ou manquante."
+        '500':
+          description: "Erreur interne du serveur lors de la génération de la carte."
