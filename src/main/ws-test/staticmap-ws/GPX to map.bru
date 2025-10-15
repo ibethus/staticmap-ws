@@ -1,0 +1,20 @@
+meta {
+  name: GPX to map
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/staticmap/generate
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  gpx: 85370f2e-e99f-44ea-b39f-883dde4b0639.gpx
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

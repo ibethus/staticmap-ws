@@ -21,6 +21,7 @@ import javax.imageio.ImageIO;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 @Path("/staticmap")
 public class RestMapResource implements MapUseCases {
@@ -55,7 +56,7 @@ public class RestMapResource implements MapUseCases {
     @Produces("image/png")
     public Response createStaticMap(@MultipartForm MapFormData formData) {
         try {
-            if (formData.gpx == null && (formData.center == null || formData.zoom == null)) {
+            if (formData.gpxFileId == null && (formData.center == null || formData.zoom == null)) {
                 throw new IllegalArgumentException("Either 'gpx' or both 'center' and 'zoom' must be provided.");
             }
             MapResult mapResult = generateStaticMap(toMapCommand(formData));
@@ -78,7 +79,8 @@ public class RestMapResource implements MapUseCases {
     }
 
     private MapCommand toMapCommand(MapFormData formData) {
-        return new MapCommand(formData.gpx, 10D, 10D, 1, 100, 100, TileProvider.ARCGIS_ONLINE.getUrl());
+        InputStream gpx = storageService.retrieveGpx(formData.gpxFileId);
+        return new MapCommand(gpx, 10D, 10D, 1, 100, 100, TileProvider.ARCGIS_ONLINE.getUrl());
     }
 
     @Override

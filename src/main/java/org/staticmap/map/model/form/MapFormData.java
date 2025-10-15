@@ -11,8 +11,8 @@ import org.staticmap.map.gpx.TileProvider;
 public class MapFormData {
 
     @FormParam("gpx")
-    @PartType(MediaType.APPLICATION_OCTET_STREAM)
-    public InputStream gpx;
+    @PartType(MediaType.TEXT_PLAIN)
+    public String gpxFileId;
 
     @FormParam("size")
     @PartType(MediaType.TEXT_PLAIN)
