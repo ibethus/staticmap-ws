@@ -58,6 +58,11 @@
             <version>1.6.0</version>
         </dependency>
         <dependency>
+            <groupId>io.quarkiverse.minio</groupId>
+            <artifactId>quarkus-minio</artifactId>
+            <version>3.8.6</version>
+        </dependency>
+        <dependency>
             <groupId>io.github.ibethus.staticmap</groupId>
             <artifactId>staticmap</artifactId>
             <version>0.0.3</version>

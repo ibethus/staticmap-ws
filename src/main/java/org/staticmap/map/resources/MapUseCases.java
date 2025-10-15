@@ -1,7 +1,7 @@
 package org.staticmap.map.resources;
 
-import org.staticmap.model.MapCommand;
-import org.staticmap.model.MapResult;
+import org.staticmap.map.model.MapCommand;
+import org.staticmap.map.model.MapResult;
 
 import java.io.IOException;
 

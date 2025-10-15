@@ -1,0 +1,19 @@
+meta {
+  name: Store GPX file
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/staticmap/uploadGpx
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  gpx: @file(/home/ivan/envdev/staticmap-ws/src/main/ws-test/Lunch_Run.gpx)
+}
+
+settings {
+  encodeUrl: true
+}

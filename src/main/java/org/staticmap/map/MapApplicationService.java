@@ -3,8 +3,8 @@ package org.staticmap.map;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import org.staticmap.map.resources.MapUseCases;
-import org.staticmap.model.MapCommand;
-import org.staticmap.model.MapResult;
+import org.staticmap.map.model.MapCommand;
+import org.staticmap.map.model.MapResult;
 import org.staticmap.services.MapGeneratorService;
 
 import java.awt.image.BufferedImage;

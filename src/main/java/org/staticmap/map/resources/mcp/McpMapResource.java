@@ -7,8 +7,8 @@ import jakarta.inject.Singleton;
 import org.staticmap.map.MapApplicationService;
 import org.staticmap.map.gpx.TileProvider;
 import org.staticmap.map.resources.MapUseCases;
-import org.staticmap.model.MapCommand;
-import org.staticmap.model.MapResult;
+import org.staticmap.map.model.MapCommand;
+import org.staticmap.map.model.MapResult;
 
 import javax.imageio.ImageIO;
 import java.io.ByteArrayOutputStream;

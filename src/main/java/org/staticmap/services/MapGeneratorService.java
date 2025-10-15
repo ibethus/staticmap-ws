@@ -4,7 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import org.staticmap.map.creator.StaticMapCreator;
 import org.staticmap.map.gpx.DefaultGpxMapper;
 import org.staticmap.map.gpx.GpxStyler;
-import org.staticmap.model.MapCommand;
+import org.staticmap.map.model.MapCommand;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

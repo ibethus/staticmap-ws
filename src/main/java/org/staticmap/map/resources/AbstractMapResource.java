@@ -1,10 +1,8 @@
 package org.staticmap.map.resources;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import org.eclipse.microprofile.openapi.annotations.Components;
 import org.staticmap.map.MapApplicationService;
-import org.staticmap.model.MapCommand;
-import org.staticmap.model.MapResult;
+import org.staticmap.map.model.MapCommand;
+import org.staticmap.map.model.MapResult;
 
 import java.io.IOException;
 

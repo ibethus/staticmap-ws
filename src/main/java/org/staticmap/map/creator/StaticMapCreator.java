@@ -11,7 +11,7 @@ import com.hotcoffee.staticmap.layers.components.LineString;
 import io.jenetics.jpx.WayPoint;
 import org.slf4j.LoggerFactory;
 import org.staticmap.map.gpx.GpxStyler;
-import org.staticmap.model.MapCommand;
+import org.staticmap.map.model.MapCommand;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

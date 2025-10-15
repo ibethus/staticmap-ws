@@ -1,6 +1,6 @@
 package org.staticmap.map;
 
-import org.staticmap.model.MapCommand;
+import org.staticmap.map.model.MapCommand;
 
 public interface MapCommandMapper<U> {
 

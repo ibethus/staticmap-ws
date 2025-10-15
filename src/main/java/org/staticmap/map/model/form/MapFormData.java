@@ -1,4 +1,4 @@
-package org.staticmap.model;
+package org.staticmap.map.model.form;
 
 import java.io.InputStream;
 
