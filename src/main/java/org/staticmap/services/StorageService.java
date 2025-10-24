@@ -1,10 +1,13 @@
 package org.staticmap.services;
 
 import io.minio.*;
+import io.minio.messages.Item;
 import jakarta.enterprise.context.ApplicationScoped;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @ApplicationScoped
@@ -25,7 +28,7 @@ public class StorageService {
             ObjectWriteResponse objectWriteResponse = minioClient.putObject(
                     PutObjectArgs.builder()
                             .bucket(bucketName)
-                            .object(UUID.randomUUID() + ".gpx")
+                            .object(UUID.randomUUID().toString())
                             .stream(file, -1, 10485760)
                             .contentType("application/xml")
                             .build());
@@ -48,6 +51,21 @@ public class StorageService {
         }
     }
 
+    public List<Item> listAllGpxFiles() {
+        List<Item> items = new ArrayList<>();
+        minioClient.listObjects(
+                ListObjectsArgs.builder()
+                        .bucket(bucketName)
+                        .build()).spliterator().forEachRemaining(objects -> {
+            try {
+                items.add(objects.get());
+            } catch (Exception e) {
+                throw new RuntimeException("Error occurred while listing files from MinIO: " + e.getMessage(), e);
+            }
+        });
+        return items;
+    }
+
     private void verifyBucketExists() {
         try {
             boolean bucketExists =
@@ -55,7 +73,7 @@ public class StorageService {
             if (!bucketExists) {
                 minioClient.makeBucket(MakeBucketArgs.builder().bucket(bucketName).build());
             } else {
-                System.out.printf("Bucket %s already exists.", bucketName);
+                System.out.printf("Bucket %s already exists.%n", bucketName);
             }
         } catch (
                 Exception e) {

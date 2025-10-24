@@ -9,12 +9,12 @@ import jakarta.ws.rs.core.Response;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 import org.staticmap.map.MapApplicationService;
 import org.staticmap.map.gpx.TileProvider;
+import org.staticmap.map.model.MapCommand;
+import org.staticmap.map.model.MapResult;
 import org.staticmap.map.model.dto.GpxBucketDto;
 import org.staticmap.map.model.form.GpxFormData;
-import org.staticmap.map.resources.MapUseCases;
-import org.staticmap.map.model.MapCommand;
 import org.staticmap.map.model.form.MapFormData;
-import org.staticmap.map.model.MapResult;
+import org.staticmap.map.resources.MapUseCases;
 import org.staticmap.services.StorageService;
 
 import javax.imageio.ImageIO;
